@@ -1,6 +1,12 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
-const initialState = [];
+const initialState = [
+  {
+    id: "1",
+    title: "Redux",
+    body: "I know redux could be complex but I have to learn it well.",
+  },
+];
 
 export const todosSlice = createSlice({
   name: "todos",
@@ -24,6 +30,8 @@ export const todosSlice = createSlice({
 });
 
 export const selectTodos = (state) => state.todos;
+export const selectTodoByTitle = (state, searchData) =>
+  state.todos.find((todo) => todo.title === searchData);
 
 export const { addTodo } = todosSlice.actions;
 
