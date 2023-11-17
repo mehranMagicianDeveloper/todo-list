@@ -1,12 +1,15 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
-const initialState = [
-  {
-    id: "1",
-    title: "Redux",
-    body: "I know redux could be complex but I have to learn it well.",
-  },
-];
+const initialState = {
+  items: [
+    {
+      id: "1",
+      title: "Redux",
+      body: "I know redux could be complex but I have to learn it well.",
+    },
+  ],
+  searchData: "",
+};
 
 export const todosSlice = createSlice({
   name: "todos",
@@ -14,7 +17,7 @@ export const todosSlice = createSlice({
   reducers: {
     addTodo: {
       reducer(state, action) {
-        state.push(action.payload);
+        state.items.push(action.payload);
       },
       prepare(title, body) {
         return {
@@ -26,13 +29,15 @@ export const todosSlice = createSlice({
         };
       },
     },
+    setSearchData: (state, action) => {
+      state.searchData = action.payload;
+    },
   },
 });
 
-export const selectTodos = (state) => state.todos;
-export const selectTodoByTitle = (state, searchData) =>
-  state.todos.find((todo) => todo.title === searchData);
+export const selectTodos = (state) => state.todos.items;
+export const getSearchData = (state) => state.todos.searchData;
 
-export const { addTodo } = todosSlice.actions;
+export const { addTodo, setSearchData } = todosSlice.actions;
 
 export default todosSlice.reducer;

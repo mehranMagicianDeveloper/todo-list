@@ -1,15 +1,23 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import searchIcon from "./icon/search-icon.svg";
 import darkIcon from "./icon/dark.svg";
 import lightIcon from "./icon/light.svg";
+import { useDispatch } from "react-redux";
 
 function Navbar() {
+  const dispatch = useDispatch();
+
   const [searchData, setSearchData] = useState("");
   const [isLightOrDark, setIsLightOrDark] = useState(false);
 
   function handleSearchClick() {
-    setIsLightOrDark((preV) => !preV);
+    dispatch(setSearchData(searchData));
+  }
+
+  function handleSearchChange(event) {
+    const value = event.target.value;
+    setSearchData(value);
+    dispatch(setSearchData(searchData));
   }
 
   return (
@@ -22,7 +30,7 @@ function Navbar() {
             type="text"
             placeholder="Search"
             value={searchData}
-            onChange={(e) => setSearchData(e.value)}
+            onChange={handleSearchChange}
           />
           <img
             className="search-icon"
