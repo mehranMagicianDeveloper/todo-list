@@ -6,6 +6,19 @@ const initialState = {
       id: "1",
       title: "Redux",
       body: "I know redux could be complex but I have to learn it well.",
+      isItDone: true,
+    },
+    {
+      id: "2",
+      title: "Hooks",
+      body: "useEfect, useState,... .",
+      isItDone: false,
+    },
+    {
+      id: "3",
+      title: "React test library",
+      body: "It is the best libraray that bases on react and jest.",
+      isItDone: true,
     },
   ],
   searchData: "",
@@ -25,6 +38,7 @@ export const todosSlice = createSlice({
             id: nanoid(),
             title,
             body,
+            isItDone: false,
           },
         };
       },

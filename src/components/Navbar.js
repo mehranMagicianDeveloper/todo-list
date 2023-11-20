@@ -3,21 +3,22 @@ import searchIcon from "./icon/search-icon.svg";
 import darkIcon from "./icon/dark.svg";
 import lightIcon from "./icon/light.svg";
 import { useDispatch } from "react-redux";
+import { setSearchData } from "../features/todo/todosSlice";
 
 function Navbar() {
   const dispatch = useDispatch();
 
-  const [searchData, setSearchData] = useState("");
+  const [inputData, setInputData] = useState("");
   const [isLightOrDark, setIsLightOrDark] = useState(false);
 
   function handleSearchClick() {
-    dispatch(setSearchData(searchData));
+    dispatch(setSearchData(inputData));
   }
 
   function handleSearchChange(event) {
     const value = event.target.value;
-    setSearchData(value);
-    dispatch(setSearchData(searchData));
+    setInputData(value);
+    dispatch(setSearchData(value));
   }
 
   return (
@@ -29,7 +30,7 @@ function Navbar() {
             className="search"
             type="text"
             placeholder="Search"
-            value={searchData}
+            value={inputData}
             onChange={handleSearchChange}
           />
           <img
