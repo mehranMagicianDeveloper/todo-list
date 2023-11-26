@@ -11,7 +11,15 @@ function TodosList() {
   console.log("====================================");
 
   const renderTodos = todos.map((todo) => {
-    return <TodoItem key={todo.id} todo={todo} />;
+    let finalData = <></>;
+    if (searchData === "") {
+      finalData = <TodoItem key={todo.id} todo={todo} />;
+    } else {
+      if (todo.title.includes(searchData)) {
+        finalData = <TodoItem key={todo.id} todo={todo} />;
+      }
+    }
+    return finalData;
   });
   return <main>{renderTodos}</main>;
 }
